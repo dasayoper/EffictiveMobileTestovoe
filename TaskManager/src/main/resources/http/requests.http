@@ -1,0 +1,140 @@
+### Регистрация
+POST localhost/sign-up
+Content-Type: application/json
+
+{
+  "firstName": "Testname",
+  "lastName": "Testsurname",
+  "email": "test@mail.ru",
+  "password": "qwerty007!"
+}
+
+### Логин
+POST localhost/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@mail.ru",
+  "password": "qwerty007!"
+}
+
+### Обновление access токена по refresh токену
+
+POST localhost/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJyb2xlIjoiQ09NTU9OX1VTRVIiLCJpYXQiOjE3MzI0NzExMTEsImV4cCI6MTczMzA3NTkxMX0.jveOhcSM1Q4iDMESmV3u5-c5Z8yu4qOhhinqLH5jwdM"
+}
+
+### Logout
+POST localhost/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJyb2xlIjoiQ09NTU9OX1VTRVIiLCJpYXQiOjE3MzI3NDExODAsImV4cCI6MTczMjc0NDc4MH0.mrbtQCLHwW3WlQy6XFb79SEBq7IfZh-XnSOPW0G1nM0
+
+### Получить пользователя по id
+GET localhost/accounts/55555555-5555-5555-5555-555555555555
+
+### Получить все аккаунты
+GET localhost/accounts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJyb2xlIjoiQ09NTU9OX1VTRVIiLCJpYXQiOjE3MzI1NDM4MDQsImV4cCI6MTczMzE0ODYwNH0.qJ4hx1Da97BBeHWv_xsjhnlMKuAWpq_uKO8dbHuvTLA
+Content-Type: application/json
+
+### Создать новый аккаунт
+POST localhost/sign-up
+Content-Type: application/json
+
+{
+  "firstName": "Алексей",
+  "lastName": "Алексеев",
+  "email": "alexey.alekseev@example.com",
+  "password": "parol_007"
+}
+
+### Обновить информацию об аккаунте
+PATCH localhost/accounts/33333333-3333-3333-3333-333333333333
+Content-Type: application/json
+
+{
+  "firstName": "Иван",
+  "lastName": "Ивановский"
+}
+
+### Получить все задачи
+GET localhost/tasks?page=0&priority=MEDIUM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJyb2xlIjoiQ09NTU9OX1VTRVIiLCJpYXQiOjE3MzI3NDExODAsImV4cCI6MTczMjc0NDc4MH0.mrbtQCLHwW3WlQy6XFb79SEBq7IfZh-XnSOPW0G1nM0
+Content-Type: application/json
+
+### Получить задачу по id
+GET localhost/tasks/a2222222-2222-2222-2222-222222222222
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJyb2xlIjoiQ09NTU9OX1VTRVIiLCJpYXQiOjE3MzI3MzMwOTQsImV4cCI6MTczMjczNjY5NH0.Ze1L8e0-VmSSHd1EFWSCCm7WOl9XdfKMCttDQ24-yxs
+Content-Type: application/json
+
+### Создать новую задачу
+POST localhost/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJyb2xlIjoiQ09NTU9OX1VTRVIiLCJpYXQiOjE3MzI0NTg4NDQsImV4cCI6MTczMjQ2MjQ0NH0.QeDcvCyUjh7LQpUrT8Oq6sEwbH3awWMkTBP9r1gCaG0
+
+{
+  "title": "Новая задача",
+  "description": "Описание новой задачи",
+  "status": "ASSIGNED",
+  "priority": "MEDIUM",
+  "authorId": "11111111-1111-1111-1111-111111111111",
+  "executorId": "33333333-3333-3333-3333-333333333333"
+}
+
+### Обновить задачу по id
+PATCH localhost/tasks/a2222222-2222-2222-2222-222222222222
+Content-Type: application/json
+
+{
+  "title": "Рефакторинг класса TaskServiceImpl",
+  "status": "ASSIGNED",
+  "priority": "LOW"
+}
+
+### Обновить статус задачи по id
+PATCH localhost/tasks/a2222222-2222-2222-2222-222222222222/status
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJyb2xlIjoiQ09NTU9OX1VTRVIiLCJpYXQiOjE3MzI3MzMwOTQsImV4cCI6MTczMjczNjY5NH0.Ze1L8e0-VmSSHd1EFWSCCm7WOl9XdfKMCttDQ24-yxs
+Content-Type: application/json
+
+{
+  "status": "REVIEW"
+}
+
+### Получить все задачи конкретного автора по его id
+GET localhost/account/11111111-1111-1111-1111-111111111111/tasks/created
+
+### Получить все задачи конкретного исполнителя по его id
+GET localhost/account/11111111-1111-1111-1111-111111111111/tasks/assigned
+
+### Получить все комментарии
+GET localhost/comments
+Content-Type: application/json
+
+### Получить комментарий по id
+GET localhost/comments/c1111111-1111-1111-1111-111111111111
+Content-Type: application/json
+
+### Добавить новый комментарий
+POST localhost/tasks/a2222222-2222-2222-2222-222222222222/comments
+Content-Type: application/json
+
+{
+  "text": "Все тесты прошли, можно закрывать!"
+}
+
+### Обновить комментарий по id
+PATCH localhost/comments/d92c4630-32d3-43a2-9447-bb9fc39660cd
+Content-Type: application/json
+
+{
+  "text": "Добавились новые тесты, теперь не все проходят, упс"
+}
+
+### Получить все комментарии, принадлежащие задаче по ее id
+GET localhost/tasks/b3333333-3333-3333-3333-333333333333/comments
+Content-Type: application/json
+
+### Получить все комментарии, написанные пользователем по его id
+GET localhost/accounts/55555555-5555-5555-5555-555555555555/comments
